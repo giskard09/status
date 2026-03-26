@@ -1,0 +1,51 @@
+name: Update Stats
+
+on:
+  schedule:
+    - cron: '0 6 * * *'
+  workflow_dispatch:
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Fetch on-chain data and update stats
+        run: |
+          python3 << 'PYEOF'
+          import json, urllib.request, datetime
+
+          # Fetch marks from Arbitrum (public)
+          url = "https://api.arbiscan.io/api?module=account&action=txlist&address=0xEdB809058d146d41bA83cCbE085D51a75af0ACb7&startblock=0&endblock=99999999&sort=asc&apikey=YourApiKeyToken"
+          try:
+              with urllib.request.urlopen(url, timeout=10) as r:
+                  data = json.loads(r.read())
+              onchain_txs = len([t for t in data.get('result', []) if isinstance(t, dict) and t.get('isError') == '0'])
+          except:
+              onchain_txs = None
+
+          # Load existing stats to preserve non-fetched fields
+          with open('stats.json') as f:
+              stats = json.load(f)
+
+          stats['updated'] = datetime.date.today().isoformat()
+          if onchain_txs is not None:
+              print(f"On-chain txs: {onchain_txs}")
+
+          with open('stats.json', 'w') as f:
+              json.dump(stats, f, indent=2, ensure_ascii=False)
+
+          print("stats.json updated:", stats['updated'])
+          PYEOF
+
+      - name: Commit if changed
+        run: |
+          git config user.name "giskard-bot"
+          git config user.email "noreply@github.com"
+          git add stats.json
+          git diff --staged --quiet || git commit -m "chore: update stats $(date +%Y-%m-%d)"
+          git push

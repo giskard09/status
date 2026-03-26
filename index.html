@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Giskard — Live Metrics</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body {
+    background: #0a0a0f;
+    color: #c9d1d9;
+    font-family: 'SF Mono', 'Fira Code', monospace;
+    min-height: 100vh;
+    padding: 40px 24px;
+  }
+  .container { max-width: 800px; margin: 0 auto; }
+  header { margin-bottom: 48px; }
+  header h1 { color: #58a6ff; font-size: 1.4rem; font-weight: 600; }
+  header p { color: #8b949e; font-size: 0.85rem; margin-top: 6px; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px; margin-bottom: 48px; }
+  .card {
+    background: #161b22;
+    border: 1px solid #21262d;
+    border-radius: 8px;
+    padding: 20px;
+  }
+  .card .label { color: #8b949e; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 8px; }
+  .card .value { color: #f0f6fc; font-size: 2rem; font-weight: 700; }
+  .card .sub { color: #8b949e; font-size: 0.75rem; margin-top: 4px; }
+  .card.highlight { border-color: #1f6feb; }
+  .card.highlight .value { color: #58a6ff; }
+  .section { margin-bottom: 40px; }
+  .section h2 { color: #8b949e; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 16px; border-bottom: 1px solid #21262d; padding-bottom: 8px; }
+  .marks-grid { display: flex; flex-wrap: wrap; gap: 8px; }
+  .mark {
+    background: #161b22;
+    border: 1px solid #21262d;
+    border-radius: 6px;
+    padding: 8px 14px;
+    font-size: 0.8rem;
+  }
+  .mark.legendary { border-color: #f7931a; color: #f7931a; }
+  .mark.rare { border-color: #a371f7; color: #a371f7; }
+  .mark.common { border-color: #3fb950; color: #3fb950; }
+  .contracts { display: flex; flex-direction: column; gap: 10px; }
+  .contract {
+    background: #161b22;
+    border: 1px solid #21262d;
+    border-radius: 6px;
+    padding: 12px 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 0.8rem;
+  }
+  .contract .addr { color: #8b949e; font-size: 0.75rem; }
+  .contract a { color: #58a6ff; text-decoration: none; font-size: 0.75rem; }
+  .contract a:hover { text-decoration: underline; }
+  .dot { display: inline-block; width: 7px; height: 7px; border-radius: 50%; margin-right: 6px; }
+  .dot.green { background: #3fb950; box-shadow: 0 0 6px #3fb950; }
+  .updated { color: #484f58; font-size: 0.72rem; margin-top: 48px; text-align: center; }
+</style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <h1>⬡ Giskard</h1>
+    <p>Infrastructure for autonomous AI agents — live metrics</p>
+  </header>
+
+  <div class="grid">
+    <div class="card highlight">
+      <div class="label">Memories stored</div>
+      <div class="value" id="memories">—</div>
+      <div class="sub">semantic, persistent</div>
+    </div>
+    <div class="card">
+      <div class="label">Marks issued</div>
+      <div class="value" id="marks_total">—</div>
+      <div class="sub">on-chain, Arbitrum One</div>
+    </div>
+    <div class="card">
+      <div class="label">Agents</div>
+      <div class="value" id="agents">—</div>
+      <div class="sub">in ecosystem</div>
+    </div>
+    <div class="card">
+      <div class="label">In production</div>
+      <div class="value" id="days">—</div>
+      <div class="sub">days since launch</div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Marks earned</h2>
+    <div class="marks-grid" id="marks_list"></div>
+  </div>
+
+  <div class="section">
+    <h2>On-chain contracts</h2>
+    <div class="contracts">
+      <div class="contract">
+        <div>
+          <span><span class="dot green"></span>Giskard Payments</span>
+          <div class="addr">0xD467CD1e34515d58F98f8Eb66C0892643ec86AD3</div>
+        </div>
+        <a href="https://arbiscan.io/address/0xD467CD1e34515d58F98f8Eb66C0892643ec86AD3" target="_blank">Arbiscan ↗</a>
+      </div>
+      <div class="contract">
+        <div>
+          <span><span class="dot green"></span>Giskard Marks</span>
+          <div class="addr">0xEdB809058d146d41bA83cCbE085D51a75af0ACb7</div>
+        </div>
+        <a href="https://arbiscan.io/address/0xEdB809058d146d41bA83cCbE085D51a75af0ACb7" target="_blank">Arbiscan ↗</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <h2>Stack</h2>
+    <div class="contracts">
+      <div class="contract"><span>MCP (Model Context Protocol)</span><span style="color:#8b949e">Anthropic</span></div>
+      <div class="contract"><span>x402 payments</span><span style="color:#8b949e">Lightning + USDC</span></div>
+      <div class="contract"><span>Semantic memory</span><span style="color:#8b949e">ChromaDB + embeddings</span></div>
+      <div class="contract"><span>Karma Economy Triad</span><a href="https://github.com/giskard09/karma-economy" target="_blank">Whitepaper ↗</a></div>
+    </div>
+  </div>
+
+  <div class="updated">Updated daily · <a href="https://github.com/giskard09" style="color:#58a6ff">github.com/giskard09</a> · Production since March 2026</div>
+</div>
+
+<script>
+  async function loadStats() {
+    try {
+      const r = await fetch('stats.json');
+      const d = await r.json();
+
+      document.getElementById('memories').textContent = d.memories.toLocaleString();
+      document.getElementById('marks_total').textContent = d.marks_total;
+      document.getElementById('agents').textContent = d.agents;
+
+      const launch = new Date('2026-03-24');
+      const days = Math.floor((new Date() - launch) / 86400000);
+      document.getElementById('days').textContent = days;
+
+      const ml = document.getElementById('marks_list');
+      ml.innerHTML = '';
+      for (const m of d.marks) {
+        const el = document.createElement('div');
+        el.className = `mark ${m.rarity}`;
+        el.textContent = `${m.emoji} ${m.name}`;
+        el.title = m.desc;
+        ml.appendChild(el);
+      }
+    } catch(e) {
+      console.error(e);
+    }
+  }
+  loadStats();
+</script>
+</body>
+</html>
