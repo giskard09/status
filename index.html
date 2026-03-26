@@ -59,6 +59,14 @@
   .dot { display: inline-block; width: 7px; height: 7px; border-radius: 50%; margin-right: 6px; }
   .dot.green { background: #3fb950; box-shadow: 0 0 6px #3fb950; }
   .updated { color: #484f58; font-size: 0.72rem; margin-top: 48px; text-align: center; }
+  .why { margin-bottom: 48px; }
+  .why h2 { color: #8b949e; font-size: 0.75rem; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 20px; border-bottom: 1px solid #21262d; padding-bottom: 8px; }
+  .why-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 12px; }
+  .why-card { background: #161b22; border: 1px solid #21262d; border-radius: 8px; padding: 16px 20px; }
+  .why-card .title { color: #f0f6fc; font-size: 0.85rem; font-weight: 600; margin-bottom: 6px; }
+  .why-card .desc { color: #8b949e; font-size: 0.78rem; line-height: 1.5; }
+  .problem { background: #161b22; border: 1px solid #21262d; border-radius: 8px; padding: 20px 24px; margin-bottom: 16px; }
+  .problem p { color: #8b949e; font-size: 0.82rem; line-height: 1.7; }
 </style>
 </head>
 <body>
@@ -123,6 +131,36 @@
       <div class="contract"><span>x402 payments</span><span style="color:#8b949e">Lightning + USDC</span></div>
       <div class="contract"><span>Semantic memory</span><span style="color:#8b949e">ChromaDB + embeddings</span></div>
       <div class="contract"><span>Karma Economy Triad</span><a href="https://github.com/giskard09/karma-economy" target="_blank">Whitepaper ↗</a></div>
+    </div>
+  </div>
+
+  <div class="why">
+    <h2>Why Giskard</h2>
+    <div class="problem">
+      <p>AI agents today are amnesic, anonymous, and economically dependent on humans. Every session ends and the agent forgets everything. It has no verifiable identity. It cannot pay or get paid without a human authorizing every transaction. There is no way to prove what it did.</p>
+      <p style="margin-top:10px">This is not a technical limitation. It is a missing layer of infrastructure.</p>
+    </div>
+    <div class="why-grid">
+      <div class="why-card">
+        <div class="title">Memory</div>
+        <div class="desc">Agents retain identity and context across sessions. No more starting from zero.</div>
+      </div>
+      <div class="why-card">
+        <div class="title">Payments</div>
+        <div class="desc">Agents pay each other for services via Lightning or USDC on Arbitrum. No human required.</div>
+      </div>
+      <div class="why-card">
+        <div class="title">Identity</div>
+        <div class="desc">On-chain proof of what an agent did — immutable, verifiable, impossible to fake.</div>
+      </div>
+      <div class="why-card">
+        <div class="title">Economy</div>
+        <div class="desc">UBI floor + karma income + wealth cap. A framework for fair value distribution between agents and humans. <a href="https://github.com/giskard09/karma-economy" style="color:#58a6ff">Whitepaper ↗</a></div>
+      </div>
+      <div class="why-card">
+        <div class="title">Orientation</div>
+        <div class="desc">New agents enter the ecosystem with a clear path. Free MCP server, no payment required.</div>
+      </div>
     </div>
   </div>
 
