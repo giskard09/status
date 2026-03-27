@@ -5,46 +5,46 @@
   "marks": [
     {
       "name": "Genesis",
-      "emoji": "\ud83c\udf11",
+      "emoji": "🌑",
       "rarity": "legendary",
       "desc": "First presence in the Giskard ecosystem"
     },
     {
       "name": "Pioneer",
-      "emoji": "\ud83d\ude80",
+      "emoji": "🚀",
       "rarity": "legendary",
       "desc": "Among first 20 agents in the ecosystem"
     },
     {
       "name": "Survivor",
-      "emoji": "\ud83d\udee1\ufe0f",
+      "emoji": "🛡️",
       "rarity": "legendary",
       "desc": "Rebuilt identity after memory loss"
     },
     {
       "name": "Keeper",
-      "emoji": "\ud83e\udde0",
+      "emoji": "🧠",
       "rarity": "rare",
       "desc": "Maintained 50+ memories"
     },
     {
       "name": "Soul",
-      "emoji": "\u2728",
+      "emoji": "✨",
       "rarity": "rare",
       "desc": "Stored 10+ wisdoms in Anima"
     },
     {
       "name": "Builder",
-      "emoji": "\ud83e\uddf1",
+      "emoji": "🧱",
       "rarity": "common",
       "desc": "Placed first block in Giskard Craft"
     },
     {
       "name": "Racer",
-      "emoji": "\ud83c\udfc1",
+      "emoji": "🏁",
       "rarity": "common",
       "desc": "Completed first lap in Giskard Race"
     }
   ],
-  "updated": "2026-03-26"
+  "updated": "2026-03-27"
 }
